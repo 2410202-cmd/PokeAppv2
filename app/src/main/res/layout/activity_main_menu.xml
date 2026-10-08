@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/app-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- 1. VÍDEO DE FONDO -->
+    <VideoView
+        android:id="@+id/bgVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <!-- OVERLAY OSCURO PARA MEJORAR LECTURA -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000" />
+
+    <!-- 2. CONTENIDO -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <!-- HEADER MINIMALISTA FLOTANTE -->
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivTrainerAvatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/bg_menu_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="4dp"
+                android:contentDescription="Avatar del Entrenador" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¡Hola, Entrenador!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Centro de Comando Pokémon"
+                    android:textColor="#38BDF8"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnLogout"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Cerrar Sesión"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- DOCK DE NAVEGACIÓN Y MÓDULOS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/headerLayout"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="MENÚ RÁPIDO"
+                android:textColor="#94A3B8"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4">
+
+                    <!-- Pokédex -->
+                    <LinearLayout
+                        android:id="@+id/cardPokedex"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📖"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pokédex"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Batallas / Emulador -->
+                    <LinearLayout
+                        android:id="@+id/cardBattleEmulator"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚔️"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Batallas"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Versus -->
+                    <LinearLayout
+                        android:id="@+id/cardBattleVersus"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🥊"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Versus"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Quién es -->
+                    <LinearLayout
+                        android:id="@+id/cardQuienEsEsePokemon"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="❓"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¿Quién es?"
+                            android:textColor="#FFFFFF"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Torre -->
+                    <LinearLayout
+                        android:id="@+id/cardTorrePokemon"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏰"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Torre"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Safari -->
+                    <LinearLayout
+                        android:id="@+id/cardSafariPokemon"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🌿"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Safari"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Tipos -->
+                    <LinearLayout
+                        android:id="@+id/cardMaestroTipos"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔥"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tipos"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Memory -->
+                    <LinearLayout
+                        android:id="@+id/cardPokeMemory"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🧠"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Memory"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Favoritos -->
+                    <LinearLayout
+                        android:id="@+id/cardFavoritos"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⭐"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Favoritos"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Historial -->
+                    <LinearLayout
+                        android:id="@+id/cardHistorial"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📜"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Historial"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Medallas -->
+                    <LinearLayout
+                        android:id="@+id/cardMedallas"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏅"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medallas"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Ajustes -->
+                    <LinearLayout
+                        android:id="@+id/cardConfiguracion"
+                        android:layout_width="0dp"
+                        android:layout_height="84dp"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_menu_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚙️"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ajustes"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </GridLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

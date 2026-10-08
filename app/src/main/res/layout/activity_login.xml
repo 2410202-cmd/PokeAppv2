@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- 1. VÍDEO DE FONDO (inicio.mp4) -->
+    <VideoView
+        android:id="@+id/bgVideoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <!-- OVERLAY OSCURO PARA MEJORAR LECTURA -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <!-- 2. CONTENIDO PRINCIPAL -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/btn_cyber_pokemon"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- POKÉBOLA QUE GIRARÁ CON ANIMACIÓN NATIVA -->
+            <ImageView
+                android:id="@+id/ivLoginPokeballGif"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:src="@android:drawable/ic_menu_compass"
+                android:contentDescription="Pokébola" />
+
+            <!-- TÍTULO DE BIENVENIDA -->
+            <TextView
+                android:id="@+id/tvLoginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/pokemon_font"
+                android:gravity="center"
+                android:text="¡BIENVENIDO, ENTRENADOR!"
+                android:textColor="#38BDF8"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- CAMPO CORREO -->
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_menu_item"
+                android:hint="Correo electrónico"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#94A3B8"
+                android:textSize="14sp" />
+
+            <!-- CAMPO CONTRASEÑA -->
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_menu_item"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:paddingHorizontal="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#94A3B8"
+                android:textSize="14sp" />
+
+            <!-- BOTÓN INICIAR SESIÓN -->
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:backgroundTint="#38BDF8"
+                android:fontFamily="@font/pokemon_font"
+                android:text="INICIAR SESIÓN"
+                android:textColor="#0F172A"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+
+            <!-- ENLACE REGISTRO -->
+            <TextView
+                android:id="@+id/tvGoToRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="¿NO TIENES CUENTA? REGÍSTRATE AQUÍ"
+                android:textColor="#38BDF8"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <!-- ENLACE RECUPERAR CONTRASEÑA -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="¿OLVIDASTE TU CONTRASEÑA?"
+                android:textColor="#94A3B8"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

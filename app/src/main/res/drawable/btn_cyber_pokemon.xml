@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#40FFFFFF"> <!-- Efecto de onda al presionar -->
+
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Fondo oscuro traslúcido con efecto cristal/neón -->
+            <gradient
+                android:angle="135"
+                android:startColor="#1A1F387C"
+                android:centerColor="#260F172A"
+                android:endColor="#33030712" />
+
+            <!-- Bordes redondeados estilizados -->
+            <corners
+                android:topLeftRadius="24dp"
+                android:bottomRightRadius="24dp"
+                android:topRightRadius="6dp"
+                android:bottomLeftRadius="6dp" />
+
+            <!-- Borde Neón brillante estilo Pokédex/Futurista -->
+            <stroke
+                android:width="2dp"
+                android:color="#38BDF8" />
+        </shape>
+    </item>
+</ripple>
