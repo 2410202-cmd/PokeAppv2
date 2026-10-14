@@ -17,10 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class TorrePokemonActivity extends AppCompatActivity {
@@ -29,7 +32,7 @@ public class TorrePokemonActivity extends AppCompatActivity {
     private ProgressBar pbPlayerHp, pbEnemyHp;
     private TextView tvPlayerName, tvBossTitle, tvPlayerHpText, tvEnemyHpText, tvBattleLog, tvFloorText;
     private TextView tvDamageFloatEnemy, tvDamageFloatPlayer;
-    private Button btnAttack1, btnAttack2, btnAttack3, btnAttack4, btnSelectPokemon;
+    private Button btnAttack1, btnAttack2, btnAttack3, btnAttack4, btnSelectPokemon, btnFleeBattle;
 
     private int playerMaxHp = 120, playerHp = 120;
     private int enemyMaxHp = 100, enemyHp = 100;
@@ -114,8 +117,8 @@ public class TorrePokemonActivity extends AppCompatActivity {
                     new PokemonInfo("146", "Moltres", 140),
                     new PokemonInfo("6", "Charizard", 160)
             }),
-            // Piso 5: Maestro Ricardo
-            new MaestroData("Maestro Ricardo", new PokemonInfo[]{
+            // Piso 5: Maestra Angélica
+            new MaestroData("Maestra Angélica", new PokemonInfo[]{
                     new PokemonInfo("65", "Alakazam", 130),
                     new PokemonInfo("376", "Metagross", 150),
                     new PokemonInfo("150", "Mewtwo", 175)
@@ -125,6 +128,12 @@ public class TorrePokemonActivity extends AppCompatActivity {
                     new PokemonInfo("384", "Rayquaza", 160),
                     new PokemonInfo("483", "Dialga", 180),
                     new PokemonInfo("487", "Giratina", 200)
+            }),
+            // Piso 7 (BONUS): Badi - El Arquitecto del Caos
+            new MaestroData("Badi - Arquitecto del Caos", new PokemonInfo[]{
+                    new PokemonInfo("493", "Arceus", 180),
+                    new PokemonInfo("151", "Mew", 200),
+                    new PokemonInfo("491", "Darkrai", 220)
             })
     };
 
@@ -154,10 +163,24 @@ public class TorrePokemonActivity extends AppCompatActivity {
         btnAttack3 = findViewById(R.id.btnAttack3);
         btnAttack4 = findViewById(R.id.btnAttack4);
         btnSelectPokemon = findViewById(R.id.btnSelectPokemon);
+        btnFleeBattle = findViewById(R.id.btnFleeBattle);
+
+        if (btnFleeBattle != null) {
+            btnFleeBattle.setOnClickListener(v -> showFleeConfirmationDialog());
+        }
 
         btnSelectPokemon.setOnClickListener(v -> promptRandomTeamSelection(this::resetBattleState));
 
         promptRandomTeamSelection(this::startTowerChallenge);
+    }
+
+    private void showFleeConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("🚪 ¿Abandonar la Batalla?");
+        builder.setMessage("Si te retiras del combate, no se guardará el progreso de este nivel y regresarás a la Torre.");
+        builder.setPositiveButton("Sí, Abandonar", (dialog, which) -> finish());
+        builder.setNegativeButton("Continuar Peleando", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 
     private PokemonMoveSet getPokemonMoveSet(String pokeId) {
@@ -225,18 +248,19 @@ public class TorrePokemonActivity extends AppCompatActivity {
         }
 
         boolean[] checkedItems = new boolean[6];
+        // Pre-seleccionar los primeros 3 por defecto para facilidad del jugador
+        checkedItems[0] = true;
+        checkedItems[1] = true;
+        checkedItems[2] = true;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Selecciona exactamente 3 Pokémon para tu equipo:");
+        builder.setTitle("Selecciona 3 Pokémon para tu equipo:");
         builder.setCancelable(false);
-        builder.setMultiChoiceItems(optionNames, checkedItems, (dialog, which, isChecked) -> checkedItems[which] = isChecked);
+        builder.setMultiChoiceItems(optionNames, checkedItems, (dialogInterface, which, isChecked) -> {
+            checkedItems[which] = isChecked;
+        });
 
-        builder.setPositiveButton("Confirmar Equipo (3)", null);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+        builder.setPositiveButton("Confirmar Equipo (3)", (dialogInterface, which) -> {
             List<Integer> selectedIndices = new ArrayList<>();
             for (int i = 0; i < 6; i++) {
                 if (checkedItems[i]) {
@@ -244,19 +268,33 @@ public class TorrePokemonActivity extends AppCompatActivity {
                 }
             }
 
-            if (selectedIndices.size() != 3) {
-                Toast.makeText(this, "Por favor elige exactamente 3 Pokémon (llevas " + selectedIndices.size() + ")", Toast.LENGTH_SHORT).show();
-            } else {
-                playerTeam.clear();
-                for (int idx : selectedIndices) {
-                    playerTeam.add(new PokemonInfo(random6[idx][0], random6[idx][1], 120));
+            if (selectedIndices.isEmpty()) {
+                selectedIndices.add(0);
+                selectedIndices.add(1);
+                selectedIndices.add(2);
+            } else if (selectedIndices.size() < 3) {
+                for (int i = 0; i < 6 && selectedIndices.size() < 3; i++) {
+                    if (!selectedIndices.contains(i)) {
+                        selectedIndices.add(i);
+                    }
                 }
-                dialog.dismiss();
-                if (onTeamSelected != null) {
-                    onTeamSelected.run();
-                }
+            } else if (selectedIndices.size() > 3) {
+                selectedIndices = selectedIndices.subList(0, 3);
+            }
+
+            playerTeam.clear();
+            for (int idx : selectedIndices) {
+                playerTeam.add(new PokemonInfo(random6[idx][0], random6[idx][1], 120));
+            }
+
+            Toast.makeText(this, "¡Equipo confirmado con éxito!", Toast.LENGTH_SHORT).show();
+
+            if (onTeamSelected != null) {
+                onTeamSelected.run();
             }
         });
+
+        builder.show();
     }
 
     private void startTowerChallenge() {
@@ -344,12 +382,40 @@ public class TorrePokemonActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(this::loadNextEnemyPokemon, 1400);
             } else {
                 // ¡DERROTADOS LOS 3 POKÉMON DEL MAESTRO!
-                SharedPreferences.Editor editor = getSharedPreferences("PokeTorrePrefs", Context.MODE_PRIVATE).edit();
+                SharedPreferences prefs = getSharedPreferences("PokeTorrePrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
                 editor.putBoolean("derrotado_piso_" + floorIndex, true);
                 editor.apply();
 
-                tvBattleLog.setText("¡HAS DERROTADO A LOS 3 POKÉMON DE " + maestro.nombre.toUpperCase() + "!");
-                new Handler(Looper.getMainLooper()).postDelayed(() -> showMedalVictoryDialog(maestro.nombre, floorIndex), 1000);
+                tvBattleLog.setText("¡HAS DERROTADO A " + maestro.nombre.toUpperCase() + "!");
+
+                if (floorIndex == maestrosList.length - 1) { // VECIDOS TODOS LOS 7 NIVELES (INCLUYENDO BADI!)
+                    int clearsCount = prefs.getInt("torre_full_clears_count", 0) + 1;
+                    prefs.edit().putInt("torre_full_clears_count", clearsCount).apply();
+
+                    String[] uniqueMedals = {
+                            "🏅 Medalla de Bronce de la Torre",
+                            "🥈 Medalla de Plata del Caos",
+                            "🥇 Medalla de Oro de los Maestros",
+                            "💎 Medalla de Diamante Definitiva",
+                            "🔥 Medalla Flameante del Campeón",
+                            "⚡ Medalla Estelar de Leyenda",
+                            "👑 Medalla Suprema de la Torre"
+                    };
+                    String medalName = uniqueMedals[(clearsCount - 1) % uniqueMedals.length] + " #" + clearsCount;
+
+                    // GUARDAR EN HISTORIAL
+                    SharedPreferences medalPrefs = getSharedPreferences("PokeMedallasHistorial", Context.MODE_PRIVATE);
+                    String currentList = medalPrefs.getString("historial_list", "");
+                    String dateStr = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+                    String newEntry = medalName + " - " + dateStr;
+                    String updatedList = currentList.isEmpty() ? newEntry : currentList + "\n• " + newEntry;
+                    medalPrefs.edit().putString("historial_list", updatedList).apply();
+
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> showFullTowerVictoryMedalDialog(medalName, prefs), 1000);
+                } else {
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> showLevelCompletedDialog(maestro.nombre, floorIndex), 1000);
+                }
             }
             return;
         }
@@ -474,7 +540,16 @@ public class TorrePokemonActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showMedalVictoryDialog(String maestroNombre, int floor) {
+    private void showLevelCompletedDialog(String maestroNombre, int floor) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("⚡ ¡NIVEL COMPLETADO!");
+        builder.setMessage("¡Derrotaste a " + maestroNombre + " en el Piso " + (floor + 1) + "!\n\nSe ha desbloqueado el siguiente nivel en la Torre.");
+        builder.setPositiveButton("AVANZAR A LA TORRE", (dialog, which) -> finish());
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    private void showFullTowerVictoryMedalDialog(String medalName, SharedPreferences prefs) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_medalla_gran_torre, null);
@@ -488,14 +563,20 @@ public class TorrePokemonActivity extends AppCompatActivity {
         Button btnClaim = dialogView.findViewById(R.id.btnClaimMedal);
 
         if (tvName != null) {
-            tvName.setText("¡VICTORIA ÉPICA!");
+            tvName.setText("¡CAMPEÓN SUPREMO DE LA TORRE!");
         }
         if (tvDesc != null) {
-            tvDesc.setText("¡Has derrotado a los 3 Pokémon de " + maestroNombre + " en el Piso " + (floor + 1) + "!\nConseguiste su Medalla Oficial de la Torre.");
+            tvDesc.setText("¡Has superado los 7 Niveles incluyendo a Badi (El Arquitecto del Caos)!\n\n🏆 GANASTE:\n" + medalName + "\n\nSe ha guardado en tu Historial de Medallas.");
         }
         if (btnClaim != null) {
-            btnClaim.setText("¡RECLAMAR MEDALLA Y CONTINUAR!");
+            btnClaim.setText("¡RECLAMAR Y REINICIAR TORRE!");
             btnClaim.setOnClickListener(v -> {
+                SharedPreferences.Editor ed = prefs.edit();
+                for (int i = 0; i < maestrosList.length; i++) {
+                    ed.remove("derrotado_piso_" + i);
+                }
+                ed.apply();
+
                 dialog.dismiss();
                 finish();
             });

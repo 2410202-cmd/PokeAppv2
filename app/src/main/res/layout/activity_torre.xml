@@ -48,13 +48,82 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DERROTA A LOS MAESTROS EN CUALQUIER ORDEN Y GANA SUS MEDALLAS"
+                android:text="VENCE A TODOS LOS MAESTROS Y AL MAESTRO DEL CAOS PARA OBTENER TU MEDALLA"
                 android:textColor="#FFD700"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="18dp" />
+
+            <!-- PISO 7: BONUS - BADI (EL MAESTRO DEL CAOS) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPiso7"
+                android:layout_width="330dp"
+                android:layout_height="90dp"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#CC2A0038"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/imgMaestroPiso7"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/maestro_badi"
+                        android:background="#2A2438"
+                        android:scaleType="centerCrop"
+                        android:importantForAccessibility="no"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PISO BONUS • MAESTRO DEL CAOS"
+                            android:textColor="#EC4899"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Badi - Arquitecto del Caos"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3 Pokémon: Arceus, Mew, Darkrai"
+                            android:textColor="#CBD5E1"
+                            android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStatusPiso7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:padding="6dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- PISO 6: GRAN MAESTRO VÍCTOR -->
             <androidx.cardview.widget.CardView
@@ -77,6 +146,7 @@
                         android:id="@+id/imgMaestroPiso6"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:src="@drawable/maestro_victor"
                         android:background="#2A2438"
                         android:scaleType="centerCrop"
                         android:importantForAccessibility="no"/>
@@ -101,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:text="Gran Maestro Víctor"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -116,15 +186,15 @@
                         android:id="@+id/tvStatusPiso6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚔️ PELEAR"
-                        android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- PISO 5: MAESTRO RICARDO -->
+            <!-- PISO 5: MAESTRA ANGÉLICA -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardPiso5"
                 android:layout_width="330dp"
@@ -145,6 +215,7 @@
                         android:id="@+id/imgMaestroPiso5"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:src="@drawable/maestra_angelica"
                         android:background="#2A2438"
                         android:scaleType="centerCrop"
                         android:importantForAccessibility="no"/>
@@ -159,7 +230,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PISO 5 • MAESTRO ELITE"
+                            android:text="PISO 5 • MAESTRA ELITE"
                             android:textColor="#C084FC"
                             android:textSize="10sp"
                             android:textStyle="bold"/>
@@ -167,9 +238,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Maestro Ricardo"
+                            android:text="Maestra Angélica"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -184,9 +255,9 @@
                         android:id="@+id/tvStatusPiso5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚔️ PELEAR"
-                        android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
@@ -213,6 +284,7 @@
                         android:id="@+id/imgMaestroPiso4"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:src="@drawable/maestro_campa"
                         android:background="#2A2438"
                         android:scaleType="centerCrop"
                         android:importantForAccessibility="no"/>
@@ -237,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:text="Maestro Campa"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -252,9 +324,9 @@
                         android:id="@+id/tvStatusPiso4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚔️ PELEAR"
-                        android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
@@ -306,7 +378,7 @@
                             android:layout_height="wrap_content"
                             android:text="Maestro Edgar"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -321,9 +393,9 @@
                         android:id="@+id/tvStatusPiso3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚔️ PELEAR"
-                        android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
@@ -375,7 +447,7 @@
                             android:layout_height="wrap_content"
                             android:text="Maestro Everardo"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -390,9 +462,9 @@
                         android:id="@+id/tvStatusPiso2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚔️ PELEAR"
-                        android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:text="🔒 BLOQUEADO"
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
@@ -403,7 +475,7 @@
                 android:id="@+id/cardPiso1"
                 android:layout_width="330dp"
                 android:layout_height="90dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="#CC1C1924"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="6dp">
@@ -419,6 +491,7 @@
                         android:id="@+id/imgMaestroPiso1"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:src="@drawable/maestro_victor"
                         android:background="#2A2438"
                         android:scaleType="centerCrop"
                         android:importantForAccessibility="no"/>
@@ -443,7 +516,7 @@
                             android:layout_height="wrap_content"
                             android:text="Maestro Víctor"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -460,11 +533,23 @@
                         android:layout_height="wrap_content"
                         android:text="⚔️ PELEAR"
                         android:textColor="#FF5722"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:padding="6dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <!-- BOTÓN PARA REINICIAR LA TORRE Y EMPEZAR DE NUEVO -->
+            <Button
+                android:id="@+id/btnResetTower"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#EF4444"
+                android:text="🔄 Reiniciar Torre (Empezar de nuevo)"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

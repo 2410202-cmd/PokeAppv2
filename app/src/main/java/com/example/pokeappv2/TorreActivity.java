@@ -1,10 +1,12 @@
 package com.example.pokeappv2;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,12 +22,34 @@ public class TorreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_torre);
 
         prefs = getSharedPreferences("PokeTorrePrefs", Context.MODE_PRIVATE);
+
+        Button btnResetTower = findViewById(R.id.btnResetTower);
+        if (btnResetTower != null) {
+            btnResetTower.setOnClickListener(v -> promptResetTowerConfirmation());
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         actualizarEstadoPisos();
+    }
+
+    private void promptResetTowerConfirmation() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("🔄 ¿Reiniciar Torre?");
+        builder.setMessage("Esto reiniciará el progreso de los niveles para que puedas volver a pelear contra todos los Maestros desde el Piso 1. Las medallas de tu historial se conservarán intactas.");
+        builder.setPositiveButton("Sí, Reiniciar", (dialog, which) -> {
+            SharedPreferences.Editor ed = prefs.edit();
+            for (int i = 0; i <= 6; i++) {
+                ed.remove("derrotado_piso_" + i);
+            }
+            ed.apply();
+            actualizarEstadoPisos();
+            Toast.makeText(this, "¡Progreso de la Torre reiniciado! Puedes empezar de nuevo desde el Piso 1.", Toast.LENGTH_SHORT).show();
+        });
+        builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+        builder.show();
     }
 
     private void actualizarEstadoPisos() {
@@ -35,13 +59,15 @@ public class TorreActivity extends AppCompatActivity {
         boolean p3Derrotado = prefs.getBoolean("derrotado_piso_3", false);
         boolean p4Derrotado = prefs.getBoolean("derrotado_piso_4", false);
         boolean p5Derrotado = prefs.getBoolean("derrotado_piso_5", false);
+        boolean p6Derrotado = prefs.getBoolean("derrotado_piso_6", false);
 
         configurarPiso(R.id.cardPiso1, R.id.tvStatusPiso1, 0, "Maestro Víctor", true, p0Derrotado);
         configurarPiso(R.id.cardPiso2, R.id.tvStatusPiso2, 1, "Maestro Everardo", p0Derrotado, p1Derrotado);
         configurarPiso(R.id.cardPiso3, R.id.tvStatusPiso3, 2, "Maestro Edgar", p1Derrotado, p2Derrotado);
         configurarPiso(R.id.cardPiso4, R.id.tvStatusPiso4, 3, "Maestro Campa", p2Derrotado, p3Derrotado);
-        configurarPiso(R.id.cardPiso5, R.id.tvStatusPiso5, 4, "Maestro Ricardo", p3Derrotado, p4Derrotado);
+        configurarPiso(R.id.cardPiso5, R.id.tvStatusPiso5, 4, "Maestra Angélica", p3Derrotado, p4Derrotado);
         configurarPiso(R.id.cardPiso6, R.id.tvStatusPiso6, 5, "Gran Maestro Víctor", p4Derrotado, p5Derrotado);
+        configurarPiso(R.id.cardPiso7, R.id.tvStatusPiso7, 6, "Badi - El Arquitecto del Caos", p5Derrotado, p6Derrotado);
     }
 
     private void configurarPiso(int cardId, int tvStatusId, int floorIndex, String maestroNombre, boolean estaDesbloqueado, boolean estaDerrotado) {
@@ -50,8 +76,8 @@ public class TorreActivity extends AppCompatActivity {
 
         if (tvStatus != null) {
             if (estaDerrotado) {
-                tvStatus.setText("🏅 GANADA");
-                tvStatus.setTextColor(Color.parseColor("#FFD700"));
+                tvStatus.setText("✅ DERROTADO");
+                tvStatus.setTextColor(Color.parseColor("#4ADE80"));
             } else if (estaDesbloqueado) {
                 tvStatus.setText("⚔️ PELEAR");
                 tvStatus.setTextColor(Color.parseColor("#FF5722"));
@@ -63,8 +89,8 @@ public class TorreActivity extends AppCompatActivity {
 
         if (card != null) {
             if (estaDerrotado) {
-                card.setAlpha(0.85f);
-                card.setOnClickListener(v -> Toast.makeText(this, "¡Ya derrotaste a " + maestroNombre + " y ganaste su Medalla!", Toast.LENGTH_SHORT).show());
+                card.setAlpha(0.80f);
+                card.setOnClickListener(v -> Toast.makeText(this, "¡Ya derrotaste a " + maestroNombre + "!", Toast.LENGTH_SHORT).show());
             } else if (estaDesbloqueado) {
                 card.setAlpha(1.0f);
                 card.setOnClickListener(v -> {
@@ -73,8 +99,8 @@ public class TorreActivity extends AppCompatActivity {
                     startActivity(intent);
                 });
             } else {
-                card.setAlpha(0.45f);
-                card.setOnClickListener(v -> Toast.makeText(this, "¡Debes derrotar al Maestro del Piso anterior para desbloquear este nivel!", Toast.LENGTH_SHORT).show());
+                card.setAlpha(0.40f);
+                card.setOnClickListener(v -> Toast.makeText(this, "¡Debes derrotar al Maestro del nivel anterior para desbloquear este combate!", Toast.LENGTH_SHORT).show());
             }
         }
     }

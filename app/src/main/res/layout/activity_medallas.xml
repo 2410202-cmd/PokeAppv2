@@ -1,62 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#152033"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🏅 MEDALLERO KANTO 🏅"
-        android:textColor="#FFCB05"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:columnCount="2">
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnBadge1"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="#795548"
-            android:text="🪨\nMedalla Roca\n(Desbloqueada)" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pokemon_font"
+            android:text="🏅 MEDALLERO OFICIAL 🏅"
+            android:textColor="#FFCB05"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnBadge2"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="#00BCD4"
-            android:text="💧\nMedalla Cascada\n(Desbloqueada)" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:columnCount="2">
 
-        <Button
-            android:id="@+id/btnBadge3"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="#424242"
-            android:text="🔒\nMedalla Trueno\n(Bloqueada)" />
+            <Button
+                android:id="@+id/btnBadge1"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:backgroundTint="#795548"
+                android:text="🪨\nMedalla Roca\n(Desbloqueada)"
+                android:textSize="11sp" />
 
-        <Button
-            android:id="@+id/btnBadge4"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            android:backgroundTint="#424242"
-            android:text="🔒\nMedalla Arcoíris\n(Bloqueada)" />
-    </GridLayout>
+            <Button
+                android:id="@+id/btnBadge2"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:backgroundTint="#00BCD4"
+                android:text="💧\nMedalla Cascada\n(Desbloqueada)"
+                android:textSize="11sp" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btnBadge3"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:backgroundTint="#424242"
+                android:text="🔒\nMedalla Trueno\n(Bloqueada)"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnBadge4"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:backgroundTint="#424242"
+                android:text="🔒\nMedalla Arcoíris\n(Bloqueada)"
+                android:textSize="11sp" />
+        </GridLayout>
+
+        <!-- SECCIÓN HISTORIAL DE MEDALLAS DE LA TORRE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🏆 HISTORIAL DE MEDALLAS DE LA TORRE 🏆"
+            android:textColor="#FFD700"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvHistorialMedallas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1E293B"
+            android:padding="16dp"
+            android:text="Aún no has conquistado la Torre de Combate.\n¡Derrota a todos los Maestros incluyendo a Badi para ganar tu primera medalla única!"
+            android:textColor="#E2E8F0"
+            android:textSize="13sp"
+            android:lineSpacingExtra="4dp" />
+
+    </LinearLayout>
+</ScrollView>
