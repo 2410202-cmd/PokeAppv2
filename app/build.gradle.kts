@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.pokeappv2"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.pokeappv2"
@@ -44,6 +44,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.androidx.activity.ktx)
 
     // UI XML & Core
     implementation(libs.androidx.appcompat)

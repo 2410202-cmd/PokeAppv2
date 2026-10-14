@@ -167,14 +167,13 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void setupMenuClickListeners() {
-        // CORRECCIÓN 1: La Pokédex abre DIRECTAMENTE a Bulbasaur (#1) en PokedexActivity sin mostrar la lista
         if (cardPokedex != null) {
             cardPokedex.setOnClickListener(v -> {
                 cardPokedex.setEnabled(false);
                 animateCardClick(v, () -> {
                     cardPokedex.setEnabled(true);
                     Intent intent = new Intent(MainMenuActivity.this, PokedexActivity.class);
-                    intent.putExtra("POKEMON_NAME_OR_ID", "1"); // Abrir Bulbasaur por defecto
+                    intent.putExtra("POKEMON_NAME_OR_ID", "1");
                     startActivity(intent);
                 });
             });
@@ -183,11 +182,10 @@ public class MainMenuActivity extends AppCompatActivity {
         setupCardNavigation(cardBattleEmulator, BattleEmulatorActivity.class);
         setupCardNavigation(cardBattleVersus, BattleVersusActivity.class);
         setupCardNavigation(cardQuienEsEsePokemon, QuienEsPokemonActivity.class);
-        setupCardNavigation(cardTorrePokemon, TorrePokemonActivity.class);
+        setupCardNavigation(cardTorrePokemon, TorreActivity.class);
         setupCardNavigation(cardSafariPokemon, ZonaSafariActivity.class);
         setupCardNavigation(cardMaestroTipos, MaestroTiposActivity.class);
 
-        // PokeMemory apunta a TorrePokemonActivity
         setupCardNavigation(cardPokeMemory, TorrePokemonActivity.class);
 
         setupCardNavigation(cardFavoritos, FavoritosActivity.class);

@@ -10,14 +10,14 @@
 
     <application
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-        android:usesCleartextTraffic="true"
-        android:enableOnBackInvokedCallback="true">
+        android:usesCleartextTraffic="true">
 
         <!-- Splash Screen (Pantalla de inicio principal) -->
         <activity
@@ -25,6 +25,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,11 +34,9 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
@@ -46,11 +45,9 @@
         <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".PerfilActivity"
             android:exported="false" />
@@ -59,51 +56,43 @@
         <activity
             android:name=".PokedexActivity"
             android:exported="false" />
-
         <activity
             android:name=".BattleEmulatorActivity"
             android:exported="false" />
-
         <activity
             android:name=".BattleVersusActivity"
             android:exported="false" />
-
         <activity
             android:name=".TorrePokemonActivity"
             android:exported="false" />
-
         <activity
             android:name=".QuienEsPokemonActivity"
             android:exported="false" />
-
         <activity
             android:name=".ZonaSafariActivity"
             android:exported="false" />
-
         <activity
             android:name=".MaestroTiposActivity"
             android:exported="false" />
-
         <activity
             android:name=".TorrePokemonActivity"
             android:exported="false" />
-
         <activity
             android:name=".FavoritosActivity"
             android:exported="false" />
-
         <activity
             android:name=".HistorialActivity"
             android:exported="false" />
-
         <activity
             android:name=".MedallasActivity"
             android:exported="false" />
-
         <activity
             android:name=".ConfiguracionActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".TorreActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
