@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Borde exterior oscuro / Sombra del botón -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1E1B4B" /> <!-- Azul/Púrpura muy oscuro para el borde -->
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- Fondo principal blanco con borde interno -->
+    <item
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp"
+        android:top="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#F8FAFC" /> <!-- Fondo blanco roto / claro -->
+            <stroke
+                android:width="2.5dp"
+                android:color="#1E1B4B" /> <!-- Borde interior oscuro -->
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+
+    <!-- Remache / Punto superior izquierdo -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="top|left"
+        android:left="9dp"
+        android:top="9dp">
+        <shape android:shape="oval">
+            <solid android:color="#334155" />
+        </shape>
+    </item>
+
+    <!-- Remache / Punto superior derecho -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="top|right"
+        android:right="9dp"
+        android:top="9dp">
+        <shape android:shape="oval">
+            <solid android:color="#334155" />
+        </shape>
+    </item>
+
+    <!-- Remache / Punto inferior izquierdo -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="bottom|left"
+        android:bottom="9dp"
+        android:left="9dp">
+        <shape android:shape="oval">
+            <solid android:color="#334155" />
+        </shape>
+    </item>
+
+    <!-- Remache / Punto inferior derecho -->
+    <item
+        android:width="6dp"
+        android:height="6dp"
+        android:gravity="bottom|right"
+        android:bottom="9dp"
+        android:right="9dp">
+        <shape android:shape="oval">
+            <solid android:color="#334155" />
+        </shape>
+    </item>
+
+</layer-list>

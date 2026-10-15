@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#090D16"
+    android:padding="20dp">
+
+    <!-- HEADER: TITULO Y SCORE -->
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/pokemon_font"
+            android:text="QUIEN ES ESTE POKEMON"
+            android:textColor="#FACC15"
+            android:textSize="18sp" />
+
+        <!-- BADGE SCORE CYBER -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/clean_card_bg"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="6dp">
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pokemon_font"
+                android:text="SCORE: 0"
+                android:textColor="#38BDF8"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Racha: 0"
+                android:textColor="#F43F5E"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ÁREA CENTRAL DE LA SILUETA -->
+    <RelativeLayout
+        android:id="@+id/rlTvStage"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_below="@id/llHeader"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/clean_card_bg"
+        android:gravity="center">
+
+        <!-- CÍRCULO RESPLANDOR TRASERO -->
+        <View
+            android:id="@+id/vGlowRing"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_centerInParent="true"
+            android:alpha="0.25"
+            android:background="@drawable/btn_cyber_pokemon" />
+
+        <!-- IMAGEN / SILUETA DEL POKÉMON -->
+        <ImageView
+            android:id="@+id/ivSilhouette"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:padding="8dp" />
+
+        <!-- ETIQUETA REVELADO -->
+        <TextView
+            android:id="@+id/tvRevealedName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/pokemon_font"
+            android:text="Oculto"
+            android:textColor="#38BDF8"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <!-- PANEL DE ENTRADA Y CONTROLES -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etGuessName"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/input_bg"
+            android:gravity="center"
+            android:hint="Escribe el nombre aqui..."
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#64748B"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- BOTONES: ADIVINAR / SALTAR -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSkip"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#334155"
+                android:fontFamily="@font/pokemon_font"
+                android:text="Saltar"
+                android:textColor="#94A3B8" />
+
+            <Button
+                android:id="@+id/btnCheckGuess"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="2"
+                android:backgroundTint="#38BDF8"
+                android:fontFamily="@font/pokemon_font"
+                android:text="Adivinar"
+                android:textColor="#090D16" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

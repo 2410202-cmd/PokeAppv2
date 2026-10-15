@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Estado PRESIONADO / TOCADO (Efecto Neón Encendido) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#5038BDF8" /> <!-- Azul brillante semitransparente -->
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="2.5dp"
+                android:color="#00FFFF" /> <!-- Borde cian neón eléctrico -->
+        </shape>
+    </item>
+
+    <!-- Estado EN FOCALIZACIÓN (Navegación por teclado o D-Pad/Android TV) -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#5038BDF8" />
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="2.5dp"
+                android:color="#00FFFF" />
+        </shape>
+    </item>
+
+    <!-- Estado SELECCIONADO (Activo) -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#4038BDF8" />
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#38BDF8" />
+        </shape>
+    </item>
+
+    <!-- Estado DESHABILITADO (Botón bloqueado o cargando) -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#800F172A" /> <!-- Oscuro atenuado -->
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="1dp"
+                android:color="#334155" /> <!-- Borde gris apagado -->
+        </shape>
+    </item>
+
+    <!-- Estado NORMAL (Reposo Cyber/Neón) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E60F172A" /> <!-- Fondo azul noche semitransparente (#0F172A al 90%) -->
+            <corners android:radius="14dp" />
+            <stroke
+                android:width="1.5dp"
+                android:color="#38BDF8" /> <!-- Contorno cian neón Cyberpunk -->
+        </shape>
+    </item>
+
+</selector>
