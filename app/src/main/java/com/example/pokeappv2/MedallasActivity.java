@@ -20,6 +20,7 @@ public class MedallasActivity extends AppCompatActivity {
         Button btnBadge1 = findViewById(R.id.btnBadge1);
         Button btnBadge2 = findViewById(R.id.btnBadge2);
         Button btnBadge3 = findViewById(R.id.btnBadge3);
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
 
         tvHistorialMedallas = findViewById(R.id.tvHistorialMedallas);
 
@@ -31,6 +32,9 @@ public class MedallasActivity extends AppCompatActivity {
         }
         if (btnBadge3 != null) {
             btnBadge3.setOnClickListener(v -> Toast.makeText(this, "🔒 Derrota a Lt. Surge para desbloquear", Toast.LENGTH_SHORT).show());
+        }
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
         }
     }
 

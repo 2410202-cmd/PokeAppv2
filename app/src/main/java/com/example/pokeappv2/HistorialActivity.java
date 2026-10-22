@@ -1,66 +1,148 @@
 package com.example.pokeappv2;
 
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.HashSet;
-import java.util.Set;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HistorialActivity extends AppCompatActivity {
 
-    private LinearLayout containerHistory;
-    private SharedPreferences sharedPreferences;
+    private RecyclerView rvHistory;
+    private Button btnClearHistory;
+    private HistoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
 
-        containerHistory = findViewById(R.id.containerHistory);
-        Button btnClearHistory = findViewById(R.id.btnClearHistory);
-        sharedPreferences = getSharedPreferences("PokeHistory", MODE_PRIVATE);
+        rvHistory = findViewById(R.id.rvHistory);
+        btnClearHistory = findViewById(R.id.btnClearHistory);
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
 
-        loadHistory();
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
+
+        rvHistory.setLayoutManager(new LinearLayoutManager(this));
+
+        loadHistoryData();
 
         btnClearHistory.setOnClickListener(v -> {
-            sharedPreferences.edit().clear().apply();
-            loadHistory();
+            SharedPreferences prefs = getSharedPreferences("PokeAppHistory", Context.MODE_PRIVATE);
+            prefs.edit().remove("battle_list").apply();
+            loadHistoryData();
+            Toast.makeText(this, "Historial limpiado", Toast.LENGTH_SHORT).show();
         });
     }
 
-    private void loadHistory() {
-        containerHistory.removeAllViews();
-        Set<String> historySet = sharedPreferences.getStringSet("history_list", new HashSet<>());
+    private void loadHistoryData() {
+        SharedPreferences prefs = getSharedPreferences("PokeAppHistory", Context.MODE_PRIVATE);
+        String historyRaw = prefs.getString("battle_list", "");
 
-        if (historySet.isEmpty()) {
-            TextView emptyText = new TextView(this);
-            emptyText.setText("No hay búsquedas recientes.");
-            emptyText.setTextColor(Color.parseColor("#94A3B8"));
-            emptyText.setTextSize(16);
-            containerHistory.addView(emptyText);
-            return;
+        List<BattleRecord> battleList = new ArrayList<>();
+
+        if (!historyRaw.isEmpty()) {
+            String[] entries = historyRaw.split("\\|\\|");
+            for (String entry : entries) {
+                if (!entry.trim().isEmpty()) {
+                    String[] parts = entry.split(":::");
+                    if (parts.length >= 6) {
+                        battleList.add(new BattleRecord(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]));
+                    } else if (parts.length >= 4) {
+                        battleList.add(new BattleRecord(parts[0], parts[1], parts[2], parts[3], "", ""));
+                    }
+                }
+            }
         }
 
-        for (String item : historySet) {
-            TextView textView = new TextView(this);
-            textView.setText("🔍 " + item.toUpperCase());
-            textView.setTextColor(Color.WHITE);
-            textView.setTextSize(16);
-            textView.setPadding(24, 24, 24, 24);
-            textView.setBackgroundColor(Color.parseColor("#1E293B"));
+        adapter = new HistoryAdapter(this, battleList);
+        rvHistory.setAdapter(adapter);
+    }
 
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 0, 0, 16);
-            textView.setLayoutParams(params);
+    // Modelo para el registro
+    private static class BattleRecord {
+        String date, player, rival, winner, playerGif, rivalGif;
 
-            containerHistory.addView(textView);
+        BattleRecord(String date, String player, String rival, String winner, String playerGif, String rivalGif) {
+            this.date = date;
+            this.player = player;
+            this.rival = rival;
+            this.winner = winner;
+            this.playerGif = playerGif;
+            this.rivalGif = rivalGif;
+        }
+    }
+
+    // Adaptador RecyclerView
+    private static class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+
+        private final Context context;
+        private final List<BattleRecord> records;
+
+        HistoryAdapter(Context context, List<BattleRecord> records) {
+            this.context = context;
+            this.records = records;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_history_battle, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            BattleRecord record = records.get(position);
+
+            holder.tvDate.setText(record.date);
+            holder.tvPlayerName.setText(record.player);
+            holder.tvRivalName.setText(record.rival);
+            holder.tvWinner.setText("👑 GANADOR: " + record.winner);
+
+            if (!record.playerGif.isEmpty()) {
+                Glide.with(context).load(record.playerGif).into(holder.ivPlayerGif);
+            }
+            if (!record.rivalGif.isEmpty()) {
+                Glide.with(context).load(record.rivalGif).into(holder.ivRivalGif);
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return records.size();
+        }
+
+        static class ViewHolder extends RecyclerView.ViewHolder {
+            TextView tvDate, tvPlayerName, tvRivalName, tvWinner;
+            ImageView ivPlayerGif, ivRivalGif;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                tvDate = itemView.findViewById(R.id.tvDate);
+                tvPlayerName = itemView.findViewById(R.id.tvPlayerName);
+                tvRivalName = itemView.findViewById(R.id.tvRivalName);
+                tvWinner = itemView.findViewById(R.id.tvWinner);
+                ivPlayerGif = itemView.findViewById(R.id.ivPlayerGif);
+                ivRivalGif = itemView.findViewById(R.id.ivRivalGif);
+            }
         }
     }
 }

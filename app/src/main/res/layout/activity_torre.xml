@@ -544,9 +544,21 @@
                 android:id="@+id/btnResetTower"
                 android:layout_width="330dp"
                 android:layout_height="48dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="12dp"
                 android:backgroundTint="#EF4444"
                 android:text="🔄 Reiniciar Torre (Empezar de nuevo)"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <!-- BOTÓN REGRESAR AL MENÚ PRINCIPAL -->
+            <Button
+                android:id="@+id/btnBackToMenu"
+                android:layout_width="330dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#334155"
+                android:text="🏠 Regresar al Menú Principal"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />

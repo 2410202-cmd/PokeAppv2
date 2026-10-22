@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F172A"
+    android:background="@drawable/battle"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- CABECERA DE LA PANTALLA -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:text="HISTORIAL DE BÚSQUEDAS"
-        android:textColor="#FFCB05"
+        android:letterSpacing="0.08"
+        android:text="📜 HISTORIAL DE COMBATES"
+        android:textColor="#FACC15"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ScrollView
+    <!-- RECYCLERVIEW DE TARJETAS POKÉMON -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
 
-        <LinearLayout
-            android:id="@+id/containerHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
+    <!-- BOTÓN PARA LIMPIAR -->
     <Button
         android:id="@+id/btnClearHistory"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:backgroundTint="#EF4444"
-        android:text="Limpiar Historial"
-        android:textColor="#FFFFFF" />
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#F43F5E"
+        android:text="🗑️ LIMPIAR HISTORIAL"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp" />
+
+    <!-- BOTÓN REGRESAR AL MENÚ PRINCIPAL -->
+    <Button
+        android:id="@+id/btnBackToMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#334155"
+        android:text="🏠 REGRESAR AL MENÚ PRINCIPAL"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp" />
+
 </LinearLayout>

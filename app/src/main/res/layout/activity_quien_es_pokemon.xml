@@ -22,7 +22,19 @@
             android:fontFamily="@font/pokemon_font"
             android:text="QUIEN ES ESTE POKEMON"
             android:textColor="#FACC15"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnBackToMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#334155"
+            android:paddingHorizontal="10dp"
+            android:text="🏠 Menú"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
         <!-- BADGE SCORE CYBER -->
         <LinearLayout

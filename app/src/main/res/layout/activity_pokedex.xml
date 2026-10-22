@@ -1,118 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/battle"
-    android:fillViewport="true">
+    android:background="@drawable/pokedex">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- BOTÓN REGRESAR SUPERIOR EN LA ZONA ROJA -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Atrás"
+        android:src="@android:drawable/ic_menu_revert"
+        app:tint="#0F172A" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
+        android:layout_toEndOf="@id/btnBack"
+        android:layout_marginStart="8dp"
+        android:text="POKÉDEX NACIONAL"
+        android:textColor="#0F172A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <!-- CABECERA -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <!-- ÁREA PRINCIPAL DENTRO DE LA PANTALLA BLANCA CENTRAL -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="110dp"
+        android:paddingHorizontal="24dp"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_menu_revert"
-                app:tint="#FFFFFF" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="POKÉDEX"
-                android:textColor="#EAB308"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <!-- BUSCADOR -->
-        <EditText
-            android:id="@+id/etSearchPokemon"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:background="#CC151F30"
-            android:hint="Busca un Pokémon (ej. Pikachu)..."
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:paddingHorizontal="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#64748B"
-            android:textSize="14sp" />
-
-        <!-- BOTÓN FAVORITOS -->
-        <Button
-            android:id="@+id/btnFavoritos"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#EAB308"
-            android:text="⭐ VER MIS FAVORITOS"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-        <!-- CONTENEDOR PRINCIPAL CON FONDO SEMI-TRANSPARENTE PARA QUE RESALTE SOBRE LA IMAGEN -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="#E61E293B"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <!-- MARCO DE LA IMAGEN CON FLECHAS DE NAVEGACIÓN -->
+            <!-- BUSCADOR MINIMALISTA -->
+            <EditText
+                android:id="@+id/etSearchPokemon"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="#15000000"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"
+                android:drawableTint="#0F172A"
+                android:hint="🔍 Buscar Pokémon (ej. Pikachu)..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingHorizontal="12dp"
+                android:textColor="#0F172A"
+                android:textColorHint="#64748B"
+                android:textSize="13sp" />
+
+            <!-- BOTÓN FAVORITOS INTEGRADO -->
+            <Button
+                android:id="@+id/btnFavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#EAB308"
+                android:text="⭐ MIS POKÉMON FAVORITOS"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
+
+            <!-- IMAGEN POKÉMON FLOTANTE (SIN FONDO NEGRO) -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#80070E1B">
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp">
 
                 <ImageButton
                     android:id="@+id/btnPrevForm"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@android:drawable/ic_media_previous"
                     android:visibility="gone"
-                    app:tint="#EAB308" />
+                    app:tint="#0F172A" />
 
                 <ImageView
                     android:id="@+id/ivPokemonMain"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:layout_centerInParent="true" />
 
                 <ImageButton
                     android:id="@+id/btnNextForm"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@android:drawable/ic_media_next"
                     android:visibility="gone"
-                    app:tint="#EAB308" />
+                    app:tint="#0F172A" />
             </RelativeLayout>
 
-            <!-- DATOS DEL POKÉMON Y ESTRELLA -->
+            <!-- DATOS BÁSICOS DEL POKÉMON -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -124,15 +128,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="#025"
-                        android:textColor="#94A3B8"
-                        android:textSize="14sp" />
+                        android:textColor="#64748B"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvPokemonName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PIKACHU"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#0F172A"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -141,241 +146,112 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Forma Base"
-                        android:textColor="#EAB308"
-                        android:textSize="12sp"
+                        android:textColor="#D97706"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
                         android:visibility="gone" />
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ivStarFavorite"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:src="@android:drawable/btn_star_big_off"
                     app:tint="#EAB308" />
             </RelativeLayout>
 
-            <!-- TIPO, ALTURA Y PESO -->
             <TextView
                 android:id="@+id/tvPokemonType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:text="TIPO: ELECTRIC"
-                android:textColor="#E2E8F0"
-                android:textSize="13sp"
+                android:layout_marginTop="6dp"
+                android:text="TIPO: ELÉCTRICO"
+                android:textColor="#0F172A"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvHeightWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="ALTURA: 0.4m | PESO: 6.0kg"
-                android:textColor="#E2E8F0"
-                android:textSize="13sp" />
+                android:textColor="#334155"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvAbilities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="HABILIDADES: STATIC, LIGHTNING-ROD"
-                android:textColor="#94A3B8"
-                android:textSize="12sp" />
+                android:layout_marginTop="2dp"
+                android:text="HABILIDADES: STATIC, LIGHTNING ROD"
+                android:textColor="#475569"
+                android:textSize="11sp" />
 
-            <!-- BARRAS DE ESTADÍSTICAS -->
+            <!-- ESTADÍSTICAS SOBRE FONDO BLANCO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="PS"
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbHp"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvHp"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="35"
-                        android:textColor="#FFFFFF" />
+                    android:layout_marginBottom="4dp"
+                    android:text="ESTADÍSTICAS BASE"
+                    android:textColor="#0F172A"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="HP" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbHp" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#22C55E" />
+                    <TextView android:id="@+id/tvHp" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="35" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="Ataque"
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbAttack"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvAttack"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="55"
-                        android:textColor="#FFFFFF" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="ATAQUE" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbAttack" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#EF4444" />
+                    <TextView android:id="@+id/tvAttack" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="55" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="Defensa"
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbDefense"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvDefense"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="40"
-                        android:textColor="#FFFFFF" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="DEFENSA" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbDefense" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#3B82F6" />
+                    <TextView android:id="@+id/tvDefense" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="40" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="Atq. Esp."
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbSpAtk"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvSpAtk"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="50"
-                        android:textColor="#FFFFFF" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="AT. ESP" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbSpAtk" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#F59E0B" />
+                    <TextView android:id="@+id/tvSpAtk" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="50" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="Def. Esp."
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbSpDef"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvSpDef"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="50"
-                        android:textColor="#FFFFFF" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="DEF. ESP" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbSpDef" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#10B981" />
+                    <TextView android:id="@+id/tvSpDef" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="50" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="Velocidad"
-                        android:textColor="#FFFFFF" />
-                    <ProgressBar
-                        android:id="@+id/pbSpeed"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_weight="1"
-                        android:max="255" />
-                    <TextView
-                        android:id="@+id/tvSpeed"
-                        android:layout_width="35dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="90"
-                        android:textColor="#FFFFFF" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical">
+                    <TextView android:layout_width="65dp" android:layout_height="wrap_content" android:text="VELOCIDAD" android:textColor="#0F172A" android:textSize="11sp" android:textStyle="bold" />
+                    <ProgressBar android:id="@+id/pbSpeed" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:max="255" android:progressTint="#EC4899" />
+                    <TextView android:id="@+id/tvSpeed" android:layout_width="30dp" android:layout_height="wrap_content" android:gravity="end" android:text="90" android:textColor="#0F172A" android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- BOTÓN REPRODUCIR SONIDO -->
-            <Button
-                android:id="@+id/btnPlaySound"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#334155"
-                android:text="🔊 REPRODUCIR SONIDO"
-                android:textColor="#FFFFFF" />
-
-            <!-- SECCIÓN FORMAS ALTERNAS -->
+            <!-- FORMAS ALTERNAS -->
             <TextView
                 android:id="@+id/tvAlternateFormsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="FORMAS ALTERNAS"
-                android:textColor="#EAB308"
-                android:textSize="12sp"
+                android:textColor="#D97706"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
@@ -383,17 +259,31 @@
                 android:id="@+id/scrollForms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="none">
+                android:layout_marginTop="4dp">
 
                 <LinearLayout
                     android:id="@+id/layoutFormsContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:orientation="horizontal" />
             </HorizontalScrollView>
 
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <!-- BOTÓN DE SONIDO UBICADO ABAJO EN EL RECUADRO AZUL/ROJO INFERIOR DE LA POKÉDEX -->
+    <Button
+        android:id="@+id/btnPlaySound"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#00FFFF"
+        android:text="🔊 REPRODUCIR GRITO"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp" />
+
+</RelativeLayout>

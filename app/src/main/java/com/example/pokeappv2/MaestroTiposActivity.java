@@ -12,8 +12,15 @@ public class MaestroTiposActivity extends AppCompatActivity {
         setContentView(R.layout.activity_maestro_tipos);
 
         Button btnProbar = findViewById(R.id.btnProbartipo);
-        btnProbar.setOnClickListener(v ->
-                Toast.makeText(this, "Agua vs Fuego: ¡Super eficaz x2!", Toast.LENGTH_SHORT).show()
-        );
+        if (btnProbar != null) {
+            btnProbar.setOnClickListener(v ->
+                    Toast.makeText(this, "Agua vs Fuego: ¡Super eficaz x2!", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
     }
 }

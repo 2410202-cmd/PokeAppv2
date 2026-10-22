@@ -27,6 +27,11 @@ public class TorreActivity extends AppCompatActivity {
         if (btnResetTower != null) {
             btnResetTower.setOnClickListener(v -> promptResetTowerConfirmation());
         }
+
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
     }
 
     @Override

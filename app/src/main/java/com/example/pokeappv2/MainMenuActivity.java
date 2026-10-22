@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,58 +40,47 @@ public class MainMenuActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        // 1. Vincular componentes
+        // 1. Vincular componentes de la interfaz
+        initViews();
+
+        // 2. Configurar reproducción de video de fondo
+        setupVideoView();
+
+        // 3. Obtener y mostrar datos del usuario desde Firebase
+        setupUserData();
+
+        // 4. Aplicar efectos estéticos y fuentes
+        applyFireEffectAndFont(tvUserEmail);
+        applyFireEffectAndFont(tvSubTitle);
+
+        // 5. Configurar avatar del entrenador con Glide (Sprite GIF animado)
+        setupTrainerAvatar();
+
+        // 6. Configurar evento de cierre de sesión
+        setupLogoutButton();
+
+        // 7. Configurar navegaciones y eventos de clic en el grid de tarjetas
+        setupMenuClickListeners();
+    }
+
+    private void initViews() {
         tvUserEmail = findViewById(R.id.tvUserEmail);
         tvSubTitle = findViewById(R.id.tvSubTitle);
         btnLogout = findViewById(R.id.btnLogout);
         ivTrainerAvatar = findViewById(R.id.ivTrainerAvatar);
 
-        // 2. Configurar y Reproducir el Vídeo (menu.mp4)
-        setupVideoView();
-
-        // 3. Obtener Datos del usuario
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null && tvUserEmail != null) {
-            String email = currentUser.getEmail();
-            String username = (email != null && email.contains("@")) ? email.split("@")[0] : "Entrenador";
-            if (currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
-                username = currentUser.getDisplayName();
-            }
-            tvUserEmail.setText("¡Hola, " + username + "!");
-        }
-
-        // 4. Aplicar Fuente Personalizada + Efecto de Llamas de Fuego
-        applyFireEffectAndFont(tvUserEmail);
-        applyFireEffectAndFont(tvSubTitle);
-
-        // 5. Cargar Avatar GIF con Glide
-        if (ivTrainerAvatar != null) {
-            Glide.with(this)
-                    .asGif()
-                    .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif")
-                    .into(ivTrainerAvatar);
-
-            // Clic en avatar abre Perfil
-            ivTrainerAvatar.setOnClickListener(v -> {
-                Intent intent = new Intent(MainMenuActivity.this, PerfilActivity.class);
-                startActivity(intent);
-            });
-        }
-
-        // 6. Botón Cerrar Sesión
-        if (btnLogout != null) {
-            btnLogout.setOnClickListener(v -> {
-                mAuth.signOut();
-                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-            });
-        }
-
-        // 7. Inicializar Menús y Escuchadores
-        initMenuCards();
-        setupMenuClickListeners();
+        cardPokedex = findViewById(R.id.cardPokedex);
+        cardBattleEmulator = findViewById(R.id.cardBattleEmulator);
+        cardBattleVersus = findViewById(R.id.cardBattleVersus);
+        cardQuienEsEsePokemon = findViewById(R.id.cardQuienEsEsePokemon);
+        cardTorrePokemon = findViewById(R.id.cardTorrePokemon);
+        cardSafariPokemon = findViewById(R.id.cardSafariPokemon);
+        cardMaestroTipos = findViewById(R.id.cardMaestroTipos);
+        cardPokeMemory = findViewById(R.id.cardPokeMemory);
+        cardFavoritos = findViewById(R.id.cardFavoritos);
+        cardHistorial = findViewById(R.id.cardHistorial);
+        cardMedallas = findViewById(R.id.cardMedallas);
+        cardConfiguracion = findViewById(R.id.cardConfiguracion);
     }
 
     private void setupVideoView() {
@@ -96,19 +89,19 @@ public class MainMenuActivity extends AppCompatActivity {
             String path = "android.resource://" + getPackageName() + "/" + R.raw.menu;
 
             bgVideoView.post(() -> {
-                bgVideoView.setVideoPath(path);
+                bgVideoView.setVideoURI(Uri.parse(path));
 
                 bgVideoView.setOnPreparedListener(mp -> {
                     mp.setLooping(true);
-                    mp.setVolume(0f, 0f); // Silenciar audio
-                    mp.setVideoScalingMode(android.media.MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+                    mp.setVolume(0f, 0f); // Silenciar el audio del video
+                    mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
                     bgVideoView.start();
                 });
 
                 bgVideoView.setOnErrorListener((mp, what, extra) -> {
                     try {
                         String backupPath = "android.resource://" + getPackageName() + "/" + R.raw.inicio;
-                        bgVideoView.setVideoPath(backupPath);
+                        bgVideoView.setVideoURI(Uri.parse(backupPath));
                         bgVideoView.start();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -116,6 +109,18 @@ public class MainMenuActivity extends AppCompatActivity {
                     return true;
                 });
             });
+        }
+    }
+
+    private void setupUserData() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null && tvUserEmail != null) {
+            String email = currentUser.getEmail();
+            String username = (email != null && email.contains("@")) ? email.split("@")[0] : "Entrenador";
+            if (currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty()) {
+                username = currentUser.getDisplayName();
+            }
+            tvUserEmail.setText("¡Hola, " + username + "!");
         }
     }
 
@@ -151,22 +156,34 @@ public class MainMenuActivity extends AppCompatActivity {
         });
     }
 
-    private void initMenuCards() {
-        cardPokedex = findViewById(R.id.cardPokedex);
-        cardBattleEmulator = findViewById(R.id.cardBattleEmulator);
-        cardBattleVersus = findViewById(R.id.cardBattleVersus);
-        cardQuienEsEsePokemon = findViewById(R.id.cardQuienEsEsePokemon);
-        cardTorrePokemon = findViewById(R.id.cardTorrePokemon);
-        cardSafariPokemon = findViewById(R.id.cardSafariPokemon);
-        cardMaestroTipos = findViewById(R.id.cardMaestroTipos);
-        cardPokeMemory = findViewById(R.id.cardPokeMemory);
-        cardFavoritos = findViewById(R.id.cardFavoritos);
-        cardHistorial = findViewById(R.id.cardHistorial);
-        cardMedallas = findViewById(R.id.cardMedallas);
-        cardConfiguracion = findViewById(R.id.cardConfiguracion);
+    private void setupTrainerAvatar() {
+        if (ivTrainerAvatar != null) {
+            Glide.with(this)
+                    .asGif()
+                    .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif")
+                    .into(ivTrainerAvatar);
+
+            ivTrainerAvatar.setOnClickListener(v -> {
+                Intent intent = new Intent(MainMenuActivity.this, PerfilActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void setupLogoutButton() {
+        if (btnLogout != null) {
+            btnLogout.setOnClickListener(v -> {
+                mAuth.signOut();
+                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            });
+        }
     }
 
     private void setupMenuClickListeners() {
+        // Pokédex: Carga inicial directa en ID #1 (Bulbasaur)
         if (cardPokedex != null) {
             cardPokedex.setOnClickListener(v -> {
                 cardPokedex.setEnabled(false);
@@ -179,15 +196,14 @@ public class MainMenuActivity extends AppCompatActivity {
             });
         }
 
+        // Navegación modular a las actividades principales
         setupCardNavigation(cardBattleEmulator, BattleEmulatorActivity.class);
         setupCardNavigation(cardBattleVersus, BattleVersusActivity.class);
         setupCardNavigation(cardQuienEsEsePokemon, QuienEsPokemonActivity.class);
         setupCardNavigation(cardTorrePokemon, TorreActivity.class);
         setupCardNavigation(cardSafariPokemon, ZonaSafariActivity.class);
         setupCardNavigation(cardMaestroTipos, MaestroTiposActivity.class);
-
         setupCardNavigation(cardPokeMemory, TorrePokemonActivity.class);
-
         setupCardNavigation(cardFavoritos, FavoritosActivity.class);
         setupCardNavigation(cardHistorial, HistorialActivity.class);
         setupCardNavigation(cardMedallas, MedallasActivity.class);
@@ -200,8 +216,12 @@ public class MainMenuActivity extends AppCompatActivity {
                 cardView.setEnabled(false);
                 animateCardClick(v, () -> {
                     cardView.setEnabled(true);
-                    Intent intent = new Intent(MainMenuActivity.this, targetActivity);
-                    startActivity(intent);
+                    try {
+                        Intent intent = new Intent(MainMenuActivity.this, targetActivity);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(MainMenuActivity.this, "Módulo en desarrollo", Toast.LENGTH_SHORT).show();
+                    }
                 });
             });
         }
@@ -209,19 +229,17 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void animateCardClick(View view, Runnable onAnimationEnd) {
         view.animate()
-                .scaleX(0.92f)
-                .scaleY(0.92f)
-                .alpha(0.85f)
-                .setDuration(90)
+                .scaleX(0.94f)
+                .scaleY(0.94f)
+                .setDuration(80)
                 .withEndAction(() -> view.animate()
-                        .scaleX(1.04f)
-                        .scaleY(1.04f)
-                        .alpha(1.0f)
-                        .setDuration(90)
+                        .scaleX(1.02f)
+                        .scaleY(1.02f)
+                        .setDuration(80)
                         .withEndAction(() -> view.animate()
                                 .scaleX(1.0f)
                                 .scaleY(1.0f)
-                                .setDuration(70)
+                                .setDuration(60)
                                 .withEndAction(onAnimationEnd)
                                 .start())
                         .start())
@@ -231,7 +249,7 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (bgVideoView != null) {
+        if (bgVideoView != null && !bgVideoView.isPlaying()) {
             bgVideoView.start();
         }
     }

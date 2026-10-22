@@ -16,7 +16,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pokemon_font"
             android:text="🏅 MEDALLERO OFICIAL 🏅"
             android:textColor="#FFCB05"
             android:textSize="20sp"
@@ -25,7 +24,7 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:columnCount="2">
 
             <Button
@@ -75,21 +74,33 @@
             android:layout_height="wrap_content"
             android:text="🏆 HISTORIAL DE MEDALLAS DE LA TORRE 🏆"
             android:textColor="#FFD700"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/tvHistorialMedallas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1E293B"
-            android:padding="16dp"
+            android:padding="14dp"
             android:text="Aún no has conquistado la Torre de Combate.\n¡Derrota a todos los Maestros incluyendo a Badi para ganar tu primera medalla única!"
             android:textColor="#E2E8F0"
+            android:textSize="12sp"
+            android:lineSpacingExtra="3dp" />
+
+        <Button
+            android:id="@+id/btnBackToMenu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#334155"
+            android:text="🏠 REGRESAR AL MENÚ PRINCIPAL"
+            android:textColor="#FFFFFF"
             android:textSize="13sp"
-            android:lineSpacingExtra="4dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 </ScrollView>
