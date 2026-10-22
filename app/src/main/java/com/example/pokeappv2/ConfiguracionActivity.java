@@ -12,9 +12,16 @@ public class ConfiguracionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_configuracion);
 
         Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(v -> {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        });
+        if (btnLogout != null) {
+            btnLogout.setOnClickListener(v -> {
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            });
+        }
+
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
     }
 }

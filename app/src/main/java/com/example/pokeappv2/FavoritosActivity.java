@@ -33,6 +33,11 @@ public class FavoritosActivity extends AppCompatActivity {
         tvFavCount = findViewById(R.id.tvFavCount);
         sharedPreferences = getSharedPreferences("PokeFavorites", MODE_PRIVATE);
 
+        android.widget.Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
+
         renderFavorites();
     }
 

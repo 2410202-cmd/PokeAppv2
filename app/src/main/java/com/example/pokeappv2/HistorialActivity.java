@@ -34,6 +34,11 @@ public class HistorialActivity extends AppCompatActivity {
 
         rvHistory = findViewById(R.id.rvHistory);
         btnClearHistory = findViewById(R.id.btnClearHistory);
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
 
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
 

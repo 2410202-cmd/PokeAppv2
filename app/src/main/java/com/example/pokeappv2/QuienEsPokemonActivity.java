@@ -53,6 +53,11 @@ public class QuienEsPokemonActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScore);
         tvStreak = findViewById(R.id.tvStreak);
         tvRevealedName = findViewById(R.id.tvRevealedName);
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
 
         loadNewPokemon();
 

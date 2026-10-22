@@ -86,6 +86,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".TorreActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".QuienEsPokemonActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

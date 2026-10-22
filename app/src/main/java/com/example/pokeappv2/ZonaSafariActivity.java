@@ -19,6 +19,7 @@ public class ZonaSafariActivity extends AppCompatActivity {
         ivSafariPokemon = findViewById(R.id.ivSafariPokemon);
         Button btnCatch = findViewById(R.id.btnCatch);
         Button btnFlee = findViewById(R.id.btnFlee);
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
 
         nuevoPokemon();
 
@@ -33,6 +34,10 @@ public class ZonaSafariActivity extends AppCompatActivity {
         });
 
         btnFlee.setOnClickListener(v -> nuevoPokemon());
+
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
     }
 
     private void nuevoPokemon() {

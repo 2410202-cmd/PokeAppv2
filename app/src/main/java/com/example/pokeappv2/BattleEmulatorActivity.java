@@ -94,6 +94,11 @@ public class BattleEmulatorActivity extends AppCompatActivity {
         btnRandomRival = findViewById(R.id.btnRandomRival);
         btnStartAutoBattle = findViewById(R.id.btnStartAutoBattle);
 
+        Button btnBackToMenu = findViewById(R.id.btnBackToMenu);
+        if (btnBackToMenu != null) {
+            btnBackToMenu.setOnClickListener(v -> finish());
+        }
+
         tvPlayerName = findViewById(R.id.tvPlayerName);
         tvPlayerHpText = findViewById(R.id.tvPlayerHpText);
         tvRivalName = findViewById(R.id.tvRivalName);

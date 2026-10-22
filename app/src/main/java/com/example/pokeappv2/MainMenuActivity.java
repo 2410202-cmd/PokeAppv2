@@ -200,7 +200,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupCardNavigation(cardBattleEmulator, BattleEmulatorActivity.class);
         setupCardNavigation(cardBattleVersus, BattleVersusActivity.class);
         setupCardNavigation(cardQuienEsEsePokemon, QuienEsPokemonActivity.class);
-        setupCardNavigation(cardTorrePokemon, TorrePokemonActivity.class);
+        setupCardNavigation(cardTorrePokemon, TorreActivity.class);
         setupCardNavigation(cardSafariPokemon, ZonaSafariActivity.class);
         setupCardNavigation(cardMaestroTipos, MaestroTiposActivity.class);
         setupCardNavigation(cardPokeMemory, TorrePokemonActivity.class);

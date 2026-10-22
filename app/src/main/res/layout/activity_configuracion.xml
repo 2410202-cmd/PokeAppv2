@@ -22,4 +22,14 @@
         android:backgroundTint="#E53935"
         android:text="Cerrar Sesión"
         android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnBackToMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#334155"
+        android:text="🏠 Regresar al Menú Principal"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 </LinearLayout>
