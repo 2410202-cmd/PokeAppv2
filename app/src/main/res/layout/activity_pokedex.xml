@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/battle"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- CABECERA -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_revert"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="POKÉDEX"
+                android:textColor="#EAB308"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- BUSCADOR -->
+        <EditText
+            android:id="@+id/etSearchPokemon"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="#CC151F30"
+            android:hint="Busca un Pokémon (ej. Pikachu)..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#64748B"
+            android:textSize="14sp" />
+
+        <!-- BOTÓN FAVORITOS -->
+        <Button
+            android:id="@+id/btnFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#EAB308"
+            android:text="⭐ VER MIS FAVORITOS"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <!-- CONTENEDOR PRINCIPAL CON FONDO SEMI-TRANSPARENTE PARA QUE RESALTE SOBRE LA IMAGEN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#E61E293B"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- MARCO DE LA IMAGEN CON FLECHAS DE NAVEGACIÓN -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#80070E1B">
+
+                <ImageButton
+                    android:id="@+id/btnPrevForm"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_previous"
+                    android:visibility="gone"
+                    app:tint="#EAB308" />
+
+                <ImageView
+                    android:id="@+id/ivPokemonMain"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerInParent="true" />
+
+                <ImageButton
+                    android:id="@+id/btnNextForm"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_next"
+                    android:visibility="gone"
+                    app:tint="#EAB308" />
+            </RelativeLayout>
+
+            <!-- DATOS DEL POKÉMON Y ESTRELLA -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvPokemonId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#025"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvPokemonName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PIKACHU"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvFormIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Forma Base"
+                        android:textColor="#EAB308"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivStarFavorite"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@android:drawable/btn_star_big_off"
+                    app:tint="#EAB308" />
+            </RelativeLayout>
+
+            <!-- TIPO, ALTURA Y PESO -->
+            <TextView
+                android:id="@+id/tvPokemonType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="TIPO: ELECTRIC"
+                android:textColor="#E2E8F0"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeightWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ALTURA: 0.4m | PESO: 6.0kg"
+                android:textColor="#E2E8F0"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvAbilities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="HABILIDADES: STATIC, LIGHTNING-ROD"
+                android:textColor="#94A3B8"
+                android:textSize="12sp" />
+
+            <!-- BARRAS DE ESTADÍSTICAS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="PS"
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbHp"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvHp"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="35"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Ataque"
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbAttack"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvAttack"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="55"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Defensa"
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbDefense"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvDefense"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="40"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Atq. Esp."
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbSpAtk"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvSpAtk"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="50"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Def. Esp."
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbSpDef"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvSpDef"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="50"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Velocidad"
+                        android:textColor="#FFFFFF" />
+                    <ProgressBar
+                        android:id="@+id/pbSpeed"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:max="255" />
+                    <TextView
+                        android:id="@+id/tvSpeed"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="90"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- BOTÓN REPRODUCIR SONIDO -->
+            <Button
+                android:id="@+id/btnPlaySound"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#334155"
+                android:text="🔊 REPRODUCIR SONIDO"
+                android:textColor="#FFFFFF" />
+
+            <!-- SECCIÓN FORMAS ALTERNAS -->
+            <TextView
+                android:id="@+id/tvAlternateFormsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="FORMAS ALTERNAS"
+                android:textColor="#EAB308"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <HorizontalScrollView
+                android:id="@+id/scrollForms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutFormsContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

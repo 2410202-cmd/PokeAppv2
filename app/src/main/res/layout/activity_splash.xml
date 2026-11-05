@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A">
+
+    <!-- FONDO CON GLOW NEÓN CIAN/MORADO -->
+    <View
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+        android:alpha="0.25"
+        android:background="@drawable/bg_menu_item" />
+
+    <!-- CONTENEDOR CENTRADO -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- GIF DE GENGAR ANIMADO CON SOMBRA DE RESPLANDOR -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/ivSplashLogo"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:contentDescription="Gengar GIF" />
+        </FrameLayout>
+
+        <!-- TÍTULO PRINCIPAL CON TIPO DE LETRA POKÉMON -->
+        <TextView
+            android:id="@+id/tvSplashTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pokemon_font"
+            android:gravity="center"
+            android:text="POKÉMON V2"
+            android:textColor="#38BDF8"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- SUBTÍTULO CON LÍNEAS DE ADORNO NEÓN -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="24dp"
+                android:layout_height="2dp"
+                android:background="#38BDF8" />
+
+            <TextView
+                android:id="@+id/tvSplashSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:letterSpacing="0.2"
+                android:text="ULTIMATE TRAINER HUB"
+                android:textColor="#94A3B8"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="24dp"
+                android:layout_height="2dp"
+                android:background="#38BDF8" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- INDICADOR DE CARGA EN LA PARTE INFERIOR -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:indeterminateTint="#38BDF8" />
+
+        <TextView
+            android:id="@+id/tvSplashLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:letterSpacing="0.1"
+            android:text="Cargando mundo Pokémon..."
+            android:textColor="#64748B"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

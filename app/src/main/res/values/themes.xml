@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/schemas/tools">
+
+    <!-- Tema base de tu aplicación -->
+    <style name="Theme.PokeAppv2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Colores y configuración principal -->
+    </style>
+
+    <!-- Estilo para esquinas futuristas de MaterialCardView -->
+    <style name="ShapeAppearance.CyberButton" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">6dp</item>
+        <item name="cornerSizeBottomLeft">6dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+    </style>
+
+</resources>

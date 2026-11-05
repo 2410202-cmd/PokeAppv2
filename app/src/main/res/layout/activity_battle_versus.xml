@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A"
+    android:padding="16dp">
+
+    <!-- ARENA DE COMBATE -->
+    <LinearLayout
+        android:id="@+id/llBattleArena"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/clean_card_bg"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- RIVAL (RIVAL EN LA PARTE SUPERIOR DERECHA) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="#1E293B"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tvEnemyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pokemon_font"
+                    android:text="RIVAL (IA)"
+                    android:textColor="#F43F5E"
+                    android:textSize="12sp" />
+
+                <ProgressBar
+                    android:id="@+id/pbEnemyHp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="4dp"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressTint="#22C55E" />
+
+                <TextView
+                    android:id="@+id/tvEnemyHpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="100/100 HP"
+                    android:textColor="#94A3B8"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivEnemySprite"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <!-- TU POKÉMON (INFERIOR IZQUIERDA) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivPlayerSprite"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="#1E293B"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tvPlayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pokemon_font"
+                    android:text="TU POKÉMON"
+                    android:textColor="#38BDF8"
+                    android:textSize="12sp" />
+
+                <ProgressBar
+                    android:id="@+id/pbPlayerHp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="4dp"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressTint="#22C55E" />
+
+                <TextView
+                    android:id="@+id/tvPlayerHpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="100/100 HP"
+                    android:textColor="#94A3B8"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- LOG DE BATALLA / NARRADOR -->
+    <TextView
+        android:id="@+id/tvBattleLog"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/llBattleArena"
+        android:layout_marginTop="10dp"
+        android:background="#1E293B"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="¡Elige un ataque para comenzar!"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- PANEL DE SELECCIÓN Y ATAQUES (ABAJO) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <!-- BOTÓN SELECCIONAR POKÉMON -->
+        <Button
+            android:id="@+id/btnSelectPokemon"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#FACC15"
+            android:fontFamily="@font/pokemon_font"
+            android:text="Cambiar mi Pokémon"
+            android:textColor="#090D16" />
+
+        <!-- BOTONES DE ATAQUE (GRID 2x2) -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:columnCount="2"
+            android:rowCount="2">
+
+            <Button
+                android:id="@+id/btnAttack1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="3dp"
+                android:backgroundTint="#EF4444"
+                android:text="Ataque Rapido"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAttack2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="3dp"
+                android:backgroundTint="#3B82F6"
+                android:text="Impacto Fuerte"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAttack3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="3dp"
+                android:backgroundTint="#10B981"
+                android:text="Curacion"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAttack4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="3dp"
+                android:backgroundTint="#8B5CF6"
+                android:text="Ataque Especial"
+                android:textSize="11sp" />
+        </GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>
